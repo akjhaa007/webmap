@@ -1,0 +1,139 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>D3</title><script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+</head>
+<body>
+<svg>
+  
+<script>
+
+
+
+
+
+var data = [{
+        "name": "6",
+        "x": 207,
+        "y": 305
+    }, {
+        "name": "7",
+        "x": 404,
+        "y": 310
+    }, {
+        "name": "8",
+        "x": 420,
+        "y": 510
+    }, {
+        "name": "9",
+        "x": 540,
+        "y": 126
+    }, {
+        "name": "10",
+        "x": 350,
+        "y": 150
+    }, {
+        "name": "11",
+        "x": 177,
+        "y": 320
+    }, {
+        "name": "12",
+        "x": 200,
+        "y": 190
+    }, {
+        "name": "13",
+        "x": 170,
+        "y": 150
+    }, {
+        "name": "14",
+        "x": 107,
+        "y": 510
+    }, {
+        "name": "15",
+        "x": 104,
+        "y": 150
+    }, {
+        "name": "16",
+        "x": 104,
+        "y": 150
+    }, {
+        "name": "17",      
+        "x": 310,
+        "y": 160
+    }, {
+        "name": "18",      
+        "x": 120,
+        "y": 110
+    }, {
+        "name": "19",
+        "x": 619,
+        "y": 145
+    }, {
+        "name": "20",
+        "x": 148,
+        "y": 107
+    }, {
+        "name": "21",
+        "x": 575,
+        "y": 107
+    }];
+
+
+var i=20;
+
+
+
+	var width=1000;
+	var height=1000;
+
+
+
+var canvas  =   d3.select("body")
+                  
+                  
+var width=1000;
+var height=1000;
+
+
+console.log(data);
+
+canvas = d3.select('body').append("svg")
+                  .attr("height",width)
+                  .attr("width", height);
+console.log(canvas);
+canvas.selectAll('circle')
+    .data(data)
+    .enter()
+    .append('circle')
+    .attr({
+        'cx': function(d) { return d.x; },
+        'cy': function(d) { return d.y; },
+        'r': 10,
+        'opacity': 0
+    }).attr("fill","green")
+    .transition().delay(function(d,i) { return i*50; })
+    .attr('opacity',1);
+
+
+canvas.selectAll('text')
+    .data(data)
+    .enter()
+    .append('text')
+    .attr({
+    	'name':function(d) {return d.name; },
+        'x': function(d) { return d.x; },
+        'y': function(d) { return d.y; },
+        
+        'opacity': 0
+    }).attr("fill","red")
+    .transition().delay(function(d,i) { return i*50; })
+    .attr('opacity',1);
+    
+
+
+
+</script>
+</svg>
+</body>
+</html>

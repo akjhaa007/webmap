@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SVG testing</title>
+	<title>D3</title><script src="https://d3js.org/d3.v3.min.js"></script>
+
+</head>
+<body>
+
+
+ <script>
+	
+	
+	 var canvas = d3.select("body")
+            	.append("svg")
+				.attr("height", 5000)
+				.attr("width", 5000);
+
+
+    var rect   = canvas.append("rect")
+	             .attr("stroke","red")
+	             .attr("fill", "green")
+ 				 .attr("width", 800)
+ 				 .attr("height", 500);
+
+	 var circle = canvas.append("circle")
+				.attr("cx", 250)
+				.attr("cy", 300)
+				.attr("r", 50)
+				.attr("fill", "red");
+
+	
+ 
+
+
+		
+
+ </script>
+
+</body>
+</html> 

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+ 
+<head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+</head>
+   
+
+
+<body>
+
+
+
+<div class="container">
+  <h2>Wifi Map</h2>
+  <button type="button" class="btn">+</button>
+    <label for="nZoom"
+             style="display: inline-block;width:100px;height: 0px; text-align bottom: ;"> Zoom=<span id ="nZoom-value"></span>
+             </label>
+             <input type="range" min="1" max="300" id="nZoom">
+  
+  <button type="button" class="btn">-</button>
+</div>
+
+
+
+<div id="div1">
+
+<script>
+  setTimeout(function(svg){
+   window.location.reload(1);
+}, 5000);
+
+var width = 1000,
+    height = 1000;
+ var i=50;
+
+ var svg = d3.select("body")
+             .append("svg")
+             .attr("width", width)
+             .attr("height", height)
+    
+
+
+
+
+  var rect   = svg.append("rect")
+                    .attr("x",00)
+                    .attr("y",10)
+                    .attr("width",1024)
+                    .attr("height",500)
+                    .attr("fill", "black");
+
+
+
+
+d3.json("data.json", function(json) {
+    /* Define the data for the circles */
+    var elem = svg.selectAll("rect")
+        .data(json.nodes)
+  
+    /*Create and place the "blocks" containing the circle and the text */  
+    var elemEnter = elem.enter()
+	    .append("g")
+	   
+    /*Create the circle for each block */
+    var circle = elemEnter.append("circle")
+	    .attr({
+        'cx': function(d) { return d.x; },
+        'cy': function(d) { return d.y; },
+        'r': function(d) { return d.r; },
+        'fill': function(d) { return d.c; },
+        'stroke': function(d) { return d.alert; },
+        'opacity': 0
+    }).transition().delay(function(d,i){return i*50;}).attr('opacity',1)
+        .text(function(d){return d.label})
+	    
+ 
+    /* Create the text for each block */
+    elemEnter.append("text")
+	   .attr({
+        'x': function(d) { return d.x-1; },
+        'y': function(d) { return d.y-10; },
+
+        'opacity': 0
+    }).attr("fill","black")
+        .transition().delay(function(d,i){return i*50;}).attr('opacity',1)
+	    .text(function(d){return d.label})
+})
+
+</script>
+ </div>
+</body>

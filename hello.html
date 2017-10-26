@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3</title><script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+<p>
+<label for="nHeight"
+        style="display: inline-block;width: 240px;text-align: right;">
+        height = <span id ="nHeight-value"> </span>
+ </label>
+             
+  <input type="range" min="1" max="280" id="nHeight">
+</p>
+<p>
+
+<label for="nWidth"
+             style="display: inline-block;width: 240px; text-align: right;">
+             	width=<span id ="nWidth-value"></span>
+             </label>
+             <input type="range" min="1" max="400" id="nWidth">
+</p>
+
+
+<p>
+
+<label for="nZoom"
+             style="display: inline-block;width: 240px; text-align: right;">
+             	Zoom=<span id ="nZoom-value"></span>
+             </label>
+             <input type="range" min="1" max="500" id="nZoom">
+</p>
+
+<script>
+
+
+
+	var width=1000;
+	var height=1000;
+
+
+
+var canvas  =   d3.select("body")
+                  .append("svg")
+                  .attr("height",width)
+                  .attr("width", height)
+                  
+
+
+
+var rect   = canvas.append("rect")
+                    .attr("x",300)
+                    .attr("y",250)
+ 				    .attr("width",200)
+ 				    .attr("height",150)
+ 				    .attr("fill", "black");
+
+
+
+
+
+var circle = canvas.append("circle")
+				.attr("cx", 250)
+				.attr("cy", 300)
+				.attr("r", 30)
+				.attr("stroke", "red");
+
+var circle = canvas.append("circle")
+				.attr("cx", 250)
+				.attr("cy", 300)
+				.attr("ccxa", 150)
+				.attr("ccya", 100)
+				.attr("r",20)
+				.attr("fill", "green");
+
+
+var circle2 = canvas.append("circle")
+				.attr("cx", 450)
+				.attr("cy", 200)
+				.attr("r", 30)
+				.attr("stroke", "red");
+
+var circle2 = canvas.append("circle")
+				.attr("cx", 450)
+				.attr("cy", 200)
+				.attr("ccx", 450)
+				.attr("ccy", 400)
+				.attr("r",20)
+				.attr("fill", "pink");
+
+
+var text1=canvas.append('text').text("first");
+text1.attr("x",450).attr("y",200).attr("ccx", 450).attr("ccy", 400).style("fill","red");
+
+
+var text2=canvas.append('text').text("second");
+text1.attr("x",50).attr("y",600).attr("ccx", 250).attr("ccy", 200).style("fill","red");
+
+
+
+				    
+
+ d3.select("#nHeight").on("input",function() {
+ 	updateHeight(+this.value);
+ });
+
+ d3.select("#nWidth").on("input",function(){
+ 	updateWidth(+this.value);
+ });
+
+
+ d3.select("#nZoom").on("input",function(){
+ 	updateZoom(+this.value);
+ });
+
+updateZoom(100);
+updateWidth(150);
+updateHeight(100);
+
+
+  function updateHeight(nHeight){
+     	d3.select("#nHeight-value").text(nHeight);
+ 	    d3.select("#nHeight").property("value",nHeight);
+ 	    canvas.selectAll("rect")
+ 	    .attr("y",150-(nHeight/2))
+ 	    .attr("height",nHeight);
+ }
+
+
+
+ function updateWidth(nWidth)
+
+{
+    d3.select("#nWidth-value").text(nWidth)
+    d3.select("#nWidth").property("value",nWidth);
+    canvas.selectAll("rect")
+    .attr("x",300-(nWidth/2))
+    .attr("width",nWidth);
+}
+
+function updateZoom(nZoom)
+{
+
+    d3.select("#nZoom-value").text(nZoom)
+    d3.select("#nZoom").property("value",nZoom);
+   
+    canvas.selectAll("rect")
+    .attr("x",300-(nZoom/2))
+    .attr("width",nZoom)
+    .attr("y",300-(nZoom/2))
+    .attr("height",nZoom)
+     canvas.selectAll("circle")
+    .attr("cx",350-(nZoom/2))
+    .attr("ccx",nZoom)
+    .attr("cy",350-(nZoom/2))
+    .attr("ccy",nZoom);
+
+    canvas.selectAll("text")
+    .attr("x",350-(nZoom/2))
+    .attr("ccx",nZoom)
+    .attr("y",350-(nZoom/2))
+    .attr("ccy",nZoom);
+     canvas.selectAll("text")
+    .attr("x",350-(nZoom/2))
+    .attr("ccx",nZoom)
+    .attr("y",350-(nZoom/2))
+    .attr("ccy",nZoom);
+
+   
+    
+
+}
+
+
+
+
+
+</script>
+<form>
+	X cordinate:<input type="text" name="xcordinate"</br>
+	Y cordinate:<input type="text" name="cordinate">
+</form>
+</body>
+</html>
